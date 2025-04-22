@@ -1,0 +1,56 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bun-top { fill: #E6A230; }
+    .bun-bottom { fill: #E6A230; }
+    .lettuce { fill: #39FF14; }
+    .tomato { fill: #FF3A3A; }
+    .veggie-patty { fill: #4E7A3D; }
+    .cheese { fill: #F0F0F0; } /* Fromage de chèvre */
+    .sesame { fill: #FFFFFF; }
+    .rocket { fill: #2E8B57; }
+    .onion-confit { fill: #993366; opacity: 0.8; }
+    .sauce { fill: #FFCC00; opacity: 0.7; }
+    
+    .burger {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+  
+  <g class="burger" transform="translate(50, 50)">
+    <!-- Pain supérieur -->
+    <path class="bun-top" d="M200 80 C200 40, 0 40, 0 80 L0 100 L200 100 Z" />
+    
+    <!-- Sésame sur le pain -->
+    <ellipse class="sesame" cx="40" cy="60" rx="5" ry="7" />
+    <ellipse class="sesame" cx="70" cy="55" rx="5" ry="7" />
+    <ellipse class="sesame" cx="100" cy="50" rx="5" ry="7" />
+    <ellipse class="sesame" cx="130" cy="55" rx="5" ry="7" />
+    <ellipse class="sesame" cx="160" cy="60" rx="5" ry="7" />
+    
+    <!-- Sauce curry -->
+    <path class="sauce" d="M0 100 L200 100 L195 110 L5 110 Z" />
+    
+    <!-- Roquette -->
+    <path class="rocket" d="M5 110 Q 40 105, 60 115 Q 100 105, 140 115 Q 180 105, 195 110 L 195 125 Q 180 115, 140 125 Q 100 115, 60 125 Q 40 115, 5 125 Z" />
+    
+    <!-- Tomate -->
+    <rect class="tomato" x="10" y="125" width="180" height="15" rx="2" />
+    
+    <!-- Fromage de chèvre -->
+    <path class="cheese" d="M5 140 L195 140 L205 155 L-5 155 Z" />
+    
+    <!-- Confit d'oignons -->
+    <path class="onion-confit" d="M10 155 Q 40 145, 60 160 Q 100 145, 140 160 Q 180 145, 190 155 L 190 170 Q 180 160, 140 175 Q 100 160, 60 175 Q 40 160, 10 170 Z" />
+    
+    <!-- Galette de légumes (Veggie patty) -->
+    <rect class="veggie-patty" x="10" y="175" width="180" height="25" rx="5" />
+    
+    <!-- Pain inférieur -->
+    <path class="bun-bottom" d="M15 200 L185 200 L200 220 L0 220 Z" />
+  </g>
+</svg>

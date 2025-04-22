@@ -1,0 +1,102 @@
+{% extends 'base.html' %} {% block title %}Page non trouvée - Street Burger{%
+endblock %} {% block description %}La page que vous recherchez n'existe pas.
+Retournez à l'accueil de Street Burger.{% endblock %} {% block content %}
+<section class="section error-section">
+  <div class="container">
+    <div class="error-content text-center">
+      <div class="error-image">
+        <img
+          src="/static/svg/burger-404.svg"
+          alt="404 Error"
+          class="error-img"
+        />
+      </div>
+      <h1 class="error-title">404</h1>
+      <h2 class="error-subtitle">Page non trouvée</h2>
+      <p class="error-text">
+        La page que vous recherchez a peut-être été déplacée, supprimée ou n'a
+        jamais existé.
+      </p>
+      <div class="error-actions mt-4">
+        <a href="{{ url_for('index') }}" class="btn btn-primary"
+          >Retour à l'accueil</a
+        >
+        <a href="{{ url_for('menu') }}" class="btn btn-outline"
+          >Voir notre menu</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} {% block extra_scripts %}
+<style>
+  .error-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+  }
+
+  .error-image {
+    max-width: 300px;
+    margin: 0 auto 2rem;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .error-img {
+    width: 100%;
+  }
+
+  .error-title {
+    font-size: 6rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .error-subtitle {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .error-text {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .error-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .error-title {
+      font-size: 4rem;
+    }
+
+    .error-subtitle {
+      font-size: 2rem;
+    }
+
+    .error-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+{% endblock %}

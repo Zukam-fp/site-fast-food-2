@@ -1,0 +1,287 @@
+{% extends 'base.html' %} {% block title %}Street Burger - Le meilleur du street
+food à Paris{% endblock %} {% block description %}Street Burger, le meilleur de
+la street food à Paris. Découvrez nos smash burgers faits maison, frites
+fraîches et desserts gourmands. Ambiance urbaine, saveurs authentiques.{%
+endblock %} {% block content %}
+<!-- Hero Section -->
+{% include 'components/hero.html' %}
+
+<!-- Featured Menu Section -->
+<section id="featured-menu" class="section menu-section">
+  <div class="container">
+    <h2 class="section-title reveal-from-bottom">Nos Spécialités</h2>
+    <p class="text-center text-gray mb-4 reveal-from-bottom">
+      Des recettes originales, des ingrédients frais et une passion pour la
+      street food.
+    </p>
+
+    <div class="menu-grid">
+      {% for item in featured_items %}
+      <div
+        class="menu-item reveal-from-bottom"
+        data-category="{{ item.category }}"
+        data-price="{{ item.price }}"
+      >
+        <div class="menu-item-img-container">
+          <img
+            src="{{ item.image_path }}"
+            alt="{{ item.name }}"
+            class="menu-item-img"
+            loading="lazy"
+          />
+        </div>
+        <div class="menu-item-content">
+          <h3 class="menu-item-title">{{ item.name }}</h3>
+          <div class="menu-item-price">{{ "%.2f"|format(item.price) }}€</div>
+          <p class="menu-item-desc">{{ item.description }}</p>
+          <div class="menu-item-tags">
+            {% if item.is_vegetarian %}
+            <span class="menu-tag tag-vegetarian">Végétarien</span>
+            {% endif %} {% if item.is_spicy %}
+            <span class="menu-tag tag-spicy">Épicé</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="{{ url_for('menu') }}" class="btn btn-primary"
+        >Voir tout le menu</a
+      >
+    </div>
+  </div>
+</section>
+
+<!-- About Section Preview -->
+<section id="about-preview" class="section section-dark about-section">
+  <div class="container">
+    <div class="about-content">
+      <div class="about-text reveal-from-left">
+        <h2>Notre Histoire</h2>
+        <p>
+          Né dans les rues animées de Paris, Street Burger réinvente le burger
+          avec une touche urbaine authentique.
+        </p>
+        <p>
+          Nous utilisons uniquement les ingrédients les plus frais pour créer
+          des smash burgers qui explosent en saveurs.
+        </p>
+        <a href="{{ url_for('about') }}" class="btn btn-outline mt-3"
+          >Découvrir notre histoire</a
+        >
+      </div>
+      <div class="about-img reveal-from-right">
+        <img
+          src="/static/images/about/team.jpg"
+          alt="L'équipe Street Burger"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Promo Event / Countdown Section -->
+{% if promo_event %}
+<section id="promo" class="section">
+  <div class="container">
+    <div class="countdown-container" data-end-date="{{ promo_event.end_date }}">
+      <div class="countdown-overlay"></div>
+      <div class="countdown-content">
+        <h2 class="countdown-title">{{ promo_event.title }}</h2>
+        <p class="countdown-desc">{{ promo_event.description }}</p>
+        <div class="countdown-timer">
+          <div class="countdown-item">
+            <div class="countdown-number" id="countdown-days">00</div>
+            <div class="countdown-label">Jours</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number" id="countdown-hours">00</div>
+            <div class="countdown-label">Heures</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number" id="countdown-minutes">00</div>
+            <div class="countdown-label">Minutes</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number" id="countdown-seconds">00</div>
+            <div class="countdown-label">Secondes</div>
+          </div>
+        </div>
+        <div
+          id="countdown-expired"
+          class="countdown-expired"
+          style="display: none"
+        >
+          Cette offre a expiré.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="section testimonials">
+  <div class="container">
+    <h2 class="section-title reveal-from-bottom">Ce que nos clients disent</h2>
+
+    <div class="testimonial-slider">
+      <div class="row">
+        {% for testimonial in testimonials %}
+        <div class="col">
+          <div class="testimonial-item reveal-scale">
+            <div class="testimonial-content">{{ testimonial.comment }}</div>
+            <div class="testimonial-author">
+              <div class="author-info">
+                <div class="author-name">{{ testimonial.name }}</div>
+                <div class="testimonial-rating">
+                  {% for i in range(testimonial.rating) %}
+                  <i class="fas fa-star"></i>
+                  {% endfor %} {% for i in range(5 - testimonial.rating) %}
+                  <i class="far fa-star"></i>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% if loop.index is divisibleby 2 %}
+      </div>
+      <div class="row mt-4">{% endif %} {% endfor %}</div>
+    </div>
+
+    <div class="mt-4 text-center">
+      <button
+        class="btn btn-outline"
+        data-toggle="modal"
+        data-target="#testimonialModal"
+      >
+        Laisser un avis
+      </button>
+    </div>
+
+    <!-- Modal pour l'avis client -->
+    <div class="modal" id="testimonialModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Partagez votre expérience</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            {% include 'components/testimonial_form.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Delivery Partners Section -->
+<section id="delivery" class="section">
+  <div class="container">
+    <h2 class="section-title reveal-from-bottom">Commandez en Ligne</h2>
+    <p class="text-center text-gray mb-4 reveal-from-bottom">
+      Retrouvez-nous sur vos plateformes de livraison préférées.
+    </p>
+
+    <div class="delivery-partners reveal-from-bottom">
+      <div class="row justify-center">
+        <div class="col">
+          <a
+            href="https://www.ubereats.com"
+            target="_blank"
+            rel="noopener"
+            class="delivery-link"
+          >
+            <div class="delivery-logo">
+              <i class="fas fa-motorcycle fa-3x"></i>
+              <h4>Uber Eats</h4>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a
+            href="https://www.deliveroo.fr"
+            target="_blank"
+            rel="noopener"
+            class="delivery-link"
+          >
+            <div class="delivery-logo">
+              <i class="fas fa-bicycle fa-3x"></i>
+              <h4>Deliveroo</h4>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a
+            href="https://wa.me/33600000000"
+            target="_blank"
+            rel="noopener"
+            class="delivery-link"
+          >
+            <div class="delivery-logo">
+              <i class="fab fa-whatsapp fa-3x"></i>
+              <h4>WhatsApp</h4>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reservation CTA Section -->
+<section id="reservation-cta" class="section section-dark">
+  <div class="container">
+    <div class="row align-center">
+      <div class="col reveal-from-left">
+        <h2>Réservez votre table</h2>
+        <p>
+          Garantissez votre place et venez déguster nos burgers dans une
+          ambiance street unique.
+        </p>
+      </div>
+      <div class="col text-center reveal-from-right">
+        <a href="{{ url_for('reservation') }}" class="btn btn-primary btn-lg"
+          >Réserver Maintenant</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} {% block extra_scripts %}
+<script src="/static/js/countdown.js"></script>
+<script>
+  // Initialisation de la modal pour les témoignages
+  document.addEventListener("DOMContentLoaded", function () {
+    const modalTrigger = document.querySelector('[data-toggle="modal"]');
+    const modal = document.getElementById("testimonialModal");
+    const modalClose = modal.querySelector(".close");
+
+    if (modalTrigger && modal) {
+      modalTrigger.addEventListener("click", function () {
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden";
+      });
+
+      modalClose.addEventListener("click", function () {
+        modal.style.display = "none";
+        document.body.style.overflow = "";
+      });
+
+      window.addEventListener("click", function (e) {
+        if (e.target == modal) {
+          modal.style.display = "none";
+          document.body.style.overflow = "";
+        }
+      });
+    }
+  });
+</script>
+{% endblock %}

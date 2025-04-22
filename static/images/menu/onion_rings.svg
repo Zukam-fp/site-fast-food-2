@@ -1,0 +1,69 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .ring-exterieur { fill: #DA9547; }
+    .ring-interieur { fill: #E8E8E8; }
+    .sauce { fill: #F5F5DC; }
+    .plat { fill: #D43F3F; }
+    .contour-plat { fill: none; stroke: #AA3030; stroke-width: 2; }
+    
+    .rings-container {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+  </style>
+  
+  <g class="rings-container" transform="translate(50, 70)">
+    <!-- Plat -->
+    <ellipse class="plat" cx="100" cy="160" rx="90" ry="25" />
+    <ellipse class="contour-plat" cx="100" cy="160" rx="80" ry="20" />
+    
+    <!-- Sauce ranch -->
+    <ellipse class="sauce" cx="150" cy="155" rx="20" ry="12" />
+    
+    <!-- Onion Ring 1 -->
+    <g transform="translate(40, 90) rotate(-15)">
+      <ellipse class="ring-exterieur" cx="0" cy="0" rx="25" ry="18" />
+      <ellipse class="ring-interieur" cx="0" cy="0" rx="15" ry="10" />
+    </g>
+    
+    <!-- Onion Ring 2 -->
+    <g transform="translate(90, 80) rotate(10)">
+      <ellipse class="ring-exterieur" cx="0" cy="0" rx="23" ry="17" />
+      <ellipse class="ring-interieur" cx="0" cy="0" rx="13" ry="9" />
+    </g>
+    
+    <!-- Onion Ring 3 -->
+    <g transform="translate(65, 120) rotate(-5)">
+      <ellipse class="ring-exterieur" cx="0" cy="0" rx="22" ry="16" />
+      <ellipse class="ring-interieur" cx="0" cy="0" rx="12" ry="8" />
+    </g>
+    
+    <!-- Onion Ring 4 -->
+    <g transform="translate(125, 100) rotate(25)">
+      <ellipse class="ring-exterieur" cx="0" cy="0" rx="20" ry="15" />
+      <ellipse class="ring-interieur" cx="0" cy="0" rx="10" ry="7" />
+    </g>
+    
+    <!-- Onion Ring 5 -->
+    <g transform="translate(120, 130) rotate(-20)">
+      <ellipse class="ring-exterieur" cx="0" cy="0" rx="25" ry="18" />
+      <ellipse class="ring-interieur" cx="0" cy="0" rx="15" ry="10" />
+    </g>
+    
+    <!-- Onion Ring 6 (au-dessus de la sauce) -->
+    <g transform="translate(140, 140) rotate(10)">
+      <ellipse class="ring-exterieur" cx="0" cy="0" rx="18" ry="14" />
+      <ellipse class="ring-interieur" cx="0" cy="0" rx="8" ry="6" />
+    </g>
+    
+    <!-- Onion Ring déposé sur le bord du plat -->
+    <g transform="translate(40, 145) rotate(-35)">
+      <ellipse class="ring-exterieur" cx="0" cy="0" rx="20" ry="15" />
+      <ellipse class="ring-interieur" cx="0" cy="0" rx="10" ry="7" />
+    </g>
+  </g>
+</svg>

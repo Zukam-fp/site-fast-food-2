@@ -1,0 +1,143 @@
+{% extends 'base.html' %} {% block title %}Menu - Street Burger{% endblock %} {%
+block description %}Découvrez notre menu complet de burgers, accompagnements,
+desserts et boissons. Saveurs authentiques et ingrédients frais, préparés avec
+passion.{% endblock %} {% block content %}
+<!-- Menu Header -->
+<section class="section section-dark py-4 mt-4">
+  <div class="container">
+    <h1 class="text-center reveal-from-bottom">Notre Menu</h1>
+    <p class="text-center text-gray mb-4 reveal-from-bottom">
+      Des ingrédients frais, des recettes originales, une cuisson maîtrisée.
+    </p>
+  </div>
+</section>
+
+<!-- Menu Section -->
+<section class="section menu-section">
+  <div class="container">
+    <!-- Menu Filters -->
+    <div class="menu-filters reveal-from-bottom">
+      <button
+        class="filter-btn {% if active_category == 'all' %}active{% endif %}"
+        data-filter="all"
+      >
+        Tous
+      </button>
+      <button
+        class="filter-btn {% if active_category == 'burger' %}active{% endif %}"
+        data-filter="burger"
+      >
+        Burgers
+      </button>
+      <button
+        class="filter-btn {% if active_category == 'side' %}active{% endif %}"
+        data-filter="side"
+      >
+        Accompagnements
+      </button>
+      <button
+        class="filter-btn {% if active_category == 'dessert' %}active{% endif %}"
+        data-filter="dessert"
+      >
+        Desserts
+      </button>
+      <button
+        class="filter-btn {% if active_category == 'boisson' %}active{% endif %}"
+        data-filter="boisson"
+      >
+        Boissons
+      </button>
+    </div>
+
+    <!-- Menu Search -->
+    <div class="menu-search reveal-from-bottom">
+      <div class="form-group">
+        <div class="search-container">
+          <input
+            type="text"
+            id="menu-search"
+            class="form-control"
+            placeholder="Rechercher un plat..."
+          />
+          <i class="fas fa-search search-icon"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Grid -->
+    <div class="menu-grid">
+      {% for item in items %}
+      <div
+        class="menu-item reveal-from-bottom"
+        data-category="{{ item.category }}"
+        data-price="{{ item.price }}"
+      >
+        <div class="menu-item-img-container">
+          <img
+            src="{{ item.image_path }}"
+            alt="{{ item.name }}"
+            class="menu-item-img"
+            loading="lazy"
+          />
+        </div>
+        <div class="menu-item-content">
+          <h3 class="menu-item-title">{{ item.name }}</h3>
+          <div class="menu-item-price">{{ "%.2f"|format(item.price) }}€</div>
+          <p class="menu-item-desc">{{ item.description }}</p>
+          <div class="menu-item-tags">
+            {% if item.is_vegetarian %}
+            <span class="menu-tag tag-vegetarian">Végétarien</span>
+            {% endif %} {% if item.is_spicy %}
+            <span class="menu-tag tag-spicy">Épicé</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Delivery Info -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="row align-center">
+      <div class="col reveal-from-left">
+        <h2>Commandez en ligne</h2>
+        <p>Nos délicieux burgers livrés chez vous en quelques clics.</p>
+        <p>
+          Livraison disponible via Uber Eats, Deliveroo ou directement par
+          WhatsApp.
+        </p>
+      </div>
+      <div class="col text-center reveal-from-right">
+        <div class="delivery-buttons">
+          <a
+            href="https://www.ubereats.com"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-primary mb-2"
+            >Uber Eats</a
+          >
+          <a
+            href="https://www.deliveroo.fr"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-outline mb-2"
+            >Deliveroo</a
+          >
+          <a
+            href="https://wa.me/33600000000"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-secondary"
+            >WhatsApp</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} {% block extra_scripts %}
+<script src="/static/js/menu.js"></script>
+{% endblock %}

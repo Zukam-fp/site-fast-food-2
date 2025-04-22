@@ -1,0 +1,80 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .frite-exterieur { fill: #FF9F00; }
+    .frite-interieur { fill: #FFDD99; }
+    .panier { fill: #D43F3F; }
+    .panier-ligne { fill: none; stroke: #AA3030; stroke-width: 2; }
+    .herbes { fill: #4CAF50; }
+    
+    .frites-container {
+      animation: steam 3s ease-in-out infinite;
+    }
+    
+    @keyframes steam {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px) rotate(1deg); }
+    }
+  </style>
+  
+  <g class="frites-container" transform="translate(50, 70)">
+    <!-- Panier à frites -->
+    <path class="panier" d="M10 160 L10 70 C10 60, 30 50, 100 50 C170 50, 190 60, 190 70 L190 160 Z" />
+    <path class="panier-ligne" d="M10 90 L190 90" />
+    <path class="panier-ligne" d="M10 120 L190 120" />
+    
+    <!-- Frites -->
+    <g transform="translate(20, 20)">
+      <!-- Frite 1 -->
+      <g transform="rotate(-20, 20, 80)">
+        <rect class="frite-exterieur" x="15" y="20" width="10" height="70" rx="2" />
+        <rect class="frite-interieur" x="17" y="22" width="6" height="66" rx="1" />
+      </g>
+      
+      <!-- Frite 2 -->
+      <g transform="rotate(15, 40, 70)">
+        <rect class="frite-exterieur" x="35" y="15" width="10" height="80" rx="2" />
+        <rect class="frite-interieur" x="37" y="17" width="6" height="76" rx="1" />
+      </g>
+      
+      <!-- Frite 3 -->
+      <g transform="rotate(-5, 60, 90)">
+        <rect class="frite-exterieur" x="55" y="30" width="10" height="65" rx="2" />
+        <rect class="frite-interieur" x="57" y="32" width="6" height="61" rx="1" />
+      </g>
+      
+      <!-- Frite 4 -->
+      <g transform="rotate(25, 80, 60)">
+        <rect class="frite-exterieur" x="75" y="20" width="10" height="75" rx="2" />
+        <rect class="frite-interieur" x="77" y="22" width="6" height="71" rx="1" />
+      </g>
+      
+      <!-- Frite 5 -->
+      <g transform="rotate(-30, 100, 85)">
+        <rect class="frite-exterieur" x="95" y="25" width="10" height="85" rx="2" />
+        <rect class="frite-interieur" x="97" y="27" width="6" height="81" rx="1" />
+      </g>
+      
+      <!-- Frite 6 -->
+      <g transform="rotate(5, 120, 75)">
+        <rect class="frite-exterieur" x="115" y="15" width="10" height="70" rx="2" />
+        <rect class="frite-interieur" x="117" y="17" width="6" height="66" rx="1" />
+      </g>
+      
+      <!-- Frite 7 -->
+      <g transform="rotate(-15, 140, 80)">
+        <rect class="frite-exterieur" x="135" y="20" width="10" height="75" rx="2" />
+        <rect class="frite-interieur" x="137" y="22" width="6" height="71" rx="1" />
+      </g>
+    </g>
+    
+    <!-- Herbes -->
+    <circle class="herbes" cx="50" cy="40" r="2" />
+    <circle class="herbes" cx="70" cy="35" r="1.5" />
+    <circle class="herbes" cx="90" cy="45" r="2" />
+    <circle class="herbes" cx="110" cy="40" r="1.5" />
+    <circle class="herbes" cx="130" cy="50" r="2" />
+    <circle class="herbes" cx="145" cy="38" r="1.5" />
+    <circle class="herbes" cx="35" cy="55" r="1.5" />
+    <circle class="herbes" cx="155" cy="45" r="2" />
+  </g>
+</svg>

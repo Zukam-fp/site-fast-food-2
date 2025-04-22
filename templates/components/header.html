@@ -1,0 +1,348 @@
+<!-- Header simple avec styles intégrés -->
+<header
+  style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #121212;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  "
+>
+  <div style="width: 90%; max-width: 1200px; margin: 0 auto">
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+      "
+    >
+      <!-- Logo - Ajusté pour être complètement visible -->
+      <a href="{{ url_for('index') }}" style="display: block; padding: 10px 0">
+        <img
+          src="/static/svg/logo.svg"
+          alt="Street Burger Logo"
+          style="height: 50px; display: block; max-width: 100%"
+        />
+      </a>
+
+      <!-- Navigation Mobile - seulement le bouton hamburger -->
+      <div style="display: flex; align-items: center">
+        <!-- Menu Hamburger Mobile -->
+        <button
+          id="menuToggle"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+          "
+        >
+          <span
+            style="
+              display: block;
+              width: 100%;
+              height: 3px;
+              background-color: #f5f5f5;
+              border-radius: 3px;
+            "
+          ></span>
+          <span
+            style="
+              display: block;
+              width: 100%;
+              height: 3px;
+              background-color: #f5f5f5;
+              border-radius: 3px;
+            "
+          ></span>
+          <span
+            style="
+              display: block;
+              width: 100%;
+              height: 3px;
+              background-color: #f5f5f5;
+              border-radius: 3px;
+            "
+          ></span>
+        </button>
+      </div>
+
+      <!-- Desktop Navigation - cachée sur mobile -->
+      <nav
+        class="desktop-nav"
+        style="
+          display: none;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        "
+      >
+        <ul style="display: flex; list-style: none; gap: 2rem">
+          <li>
+            <a
+              href="{{ url_for('index') }}"
+              style="
+                font-family: 'Barlow Condensed', sans-serif;
+                color: #f5f5f5;
+                text-transform: uppercase;
+                font-weight: 700;
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+                padding: 0.5rem;
+                position: relative;
+              "
+              class="{% if request.path == url_for('index') %}active{% endif %}"
+              >Accueil</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ url_for('menu') }}"
+              style="
+                font-family: 'Barlow Condensed', sans-serif;
+                color: #f5f5f5;
+                text-transform: uppercase;
+                font-weight: 700;
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+                padding: 0.5rem;
+                position: relative;
+              "
+              class="{% if request.path == url_for('menu') %}active{% endif %}"
+              >Menu</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ url_for('about') }}"
+              style="
+                font-family: 'Barlow Condensed', sans-serif;
+                color: #f5f5f5;
+                text-transform: uppercase;
+                font-weight: 700;
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+                padding: 0.5rem;
+                position: relative;
+              "
+              class="{% if request.path == url_for('about') %}active{% endif %}"
+              >À propos</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ url_for('contact') }}"
+              style="
+                font-family: 'Barlow Condensed', sans-serif;
+                color: #f5f5f5;
+                text-transform: uppercase;
+                font-weight: 700;
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+                padding: 0.5rem;
+                position: relative;
+              "
+              class="{% if request.path == url_for('contact') %}active{% endif %}"
+              >Contact</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ url_for('reservation') }}"
+              style="
+                font-family: 'Barlow Condensed', sans-serif;
+                color: #f5f5f5;
+                text-transform: uppercase;
+                font-weight: 700;
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+                padding: 0.5rem;
+                position: relative;
+              "
+              class="{% if request.path == url_for('reservation') %}active{% endif %}"
+              >Réservation</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Nous avons enlevé le téléphone desktop à la demande de l'utilisateur -->
+    </div>
+  </div>
+</header>
+
+<!-- Menu Mobile -->
+<div
+  id="mobileMenu"
+  style="
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: #121212;
+    z-index: 999;
+    overflow-y: auto;
+  "
+>
+  <div style="width: 90%; max-width: 1200px; margin: 0 auto; padding: 2rem 0">
+    <ul style="list-style: none; margin: 0; padding: 0">
+      <li style="margin-bottom: 1.5rem">
+        <a
+          href="{{ url_for('index') }}"
+          style="
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.2rem;
+            color: #f5f5f5;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: block;
+            padding: 0.5rem 0;
+          "
+          class="{% if request.path == url_for('index') %}active{% endif %}"
+          >Accueil</a
+        >
+      </li>
+      <li style="margin-bottom: 1.5rem">
+        <a
+          href="{{ url_for('menu') }}"
+          style="
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.2rem;
+            color: #f5f5f5;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: block;
+            padding: 0.5rem 0;
+          "
+          class="{% if request.path == url_for('menu') %}active{% endif %}"
+          >Menu</a
+        >
+      </li>
+      <li style="margin-bottom: 1.5rem">
+        <a
+          href="{{ url_for('about') }}"
+          style="
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.2rem;
+            color: #f5f5f5;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: block;
+            padding: 0.5rem 0;
+          "
+          class="{% if request.path == url_for('about') %}active{% endif %}"
+          >À propos</a
+        >
+      </li>
+      <li style="margin-bottom: 1.5rem">
+        <a
+          href="{{ url_for('contact') }}"
+          style="
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.2rem;
+            color: #f5f5f5;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: block;
+            padding: 0.5rem 0;
+          "
+          class="{% if request.path == url_for('contact') %}active{% endif %}"
+          >Contact</a
+        >
+      </li>
+      <li style="margin-bottom: 1.5rem">
+        <a
+          href="{{ url_for('reservation') }}"
+          style="
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.2rem;
+            color: #f5f5f5;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: block;
+            padding: 0.5rem 0;
+          "
+          class="{% if request.path == url_for('reservation') %}active{% endif %}"
+          >Réservation</a
+        >
+      </li>
+      <!-- Nous avons supprimé l'entrée de téléphone dans le menu mobile -->
+    </ul>
+  </div>
+</div>
+
+<script>
+  // Attendre que le DOM soit complètement chargé
+  document.addEventListener("DOMContentLoaded", function () {
+    // Éléments du menu mobile
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    // Gestionnaire d'événement pour le toggle
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener("click", function () {
+        toggleMobileMenu();
+      });
+
+      // Fermer le menu mobile au clic sur un lien
+      const mobileLinks = mobileMenu.querySelectorAll("a");
+      mobileLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+          mobileMenu.style.display = "none";
+          document.body.style.overflow = "";
+        });
+      });
+    }
+
+    // Fonction pour afficher/cacher le menu mobile
+    function toggleMobileMenu() {
+      if (mobileMenu) {
+        if (mobileMenu.style.display === "block") {
+          mobileMenu.style.display = "none";
+          document.body.style.overflow = "";
+        } else {
+          mobileMenu.style.display = "block";
+          document.body.style.overflow = "hidden";
+        }
+      }
+    }
+  });
+</script>
+
+<style>
+  /* Ajouter un espacement pour éviter que le contenu soit sous le header */
+  main {
+    padding-top: 80px;
+  }
+
+  /* Styles pour les liens actifs */
+  .active {
+    color: #ffd100 !important;
+  }
+
+  @media (min-width: 992px) {
+    /* Styles desktop seulement */
+    [id="menuToggle"] {
+      display: none !important;
+    }
+
+    .desktop-nav {
+      display: block !important;
+    }
+  }
+</style>

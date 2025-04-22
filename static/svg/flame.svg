@@ -1,0 +1,28 @@
+<svg width="50" height="80" viewBox="0 0 50 80" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .flame-outer { fill: #FF3A3A; }
+    .flame-inner { fill: #FFCC00; }
+    .flame-core { fill: #FFFFFF; }
+    
+    .flame {
+      animation: flameAnimation 1.5s infinite alternate ease-in-out;
+      transform-origin: center bottom;
+    }
+    
+    @keyframes flameAnimation {
+      0% { transform: scale(1, 1) translateY(0); }
+      100% { transform: scale(1.1, 1.2) translateY(-5px); }
+    }
+  </style>
+  
+  <g class="flame">
+    <!-- Flamme externe -->
+    <path class="flame-outer" d="M25 0C25 0 10 25 10 45C10 65 25 75 25 75C25 75 40 65 40 45C40 25 25 0 25 0Z" />
+    
+    <!-- Flamme interne -->
+    <path class="flame-inner" d="M25 20C25 20 15 35 15 50C15 60 25 65 25 65C25 65 35 60 35 50C35 35 25 20 25 20Z" />
+    
+    <!-- Coeur de la flamme -->
+    <path class="flame-core" d="M25 35C25 35 20 45 20 55C20 60 25 62 25 62C25 62 30 60 30 55C30 45 25 35 25 35Z" />
+  </g>
+</svg>

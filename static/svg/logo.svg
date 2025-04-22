@@ -1,0 +1,46 @@
+<svg width="120" height="60" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 28px; fill: #FFD100; }
+    .logo-tagline { font-family: 'Barlow', sans-serif; font-size: 12px; fill: #FFFFFF; }
+    .flame { fill: #FF3A3A; }
+    .burger { fill: #FFD100; }
+    .bun-top { fill: #E6A230; }
+    .bun-bottom { fill: #E6A230; }
+    .lettuce { fill: #39FF14; }
+    .flame-animation { animation: flameAnimation 1.5s infinite alternate ease-in-out; transform-origin: center 75%; }
+    
+    @keyframes flameAnimation {
+      0% { transform: scale(1, 1); }
+      100% { transform: scale(1.1, 1.2); }
+    }
+  </style>
+  
+  <!-- Fond du logo -->
+  <rect x="0" y="0" width="120" height="60" rx="10" fill="#121212" />
+  
+  <!-- Flamme -->
+  <g class="flame-animation">
+    <path class="flame" d="M30 40c0 0-5-10 0-20 5 10 0 20 0 20z" />
+    <path class="flame" d="M40 40c0 0-8-15 0-25 8 10 0 25 0 25z" />
+    <path class="flame" d="M20 40c0 0-8-15 0-25 8 10 0 25 0 25z" />
+  </g>
+  
+  <!-- Burger -->
+  <g transform="translate(20, 25)">
+    <!-- Pain supérieur -->
+    <path class="bun-top" d="M5 15 C5 5, 45 5, 45 15 L45 18 L5 18 Z" />
+    
+    <!-- Laitue -->
+    <path class="lettuce" d="M5 18 L45 18 L43 21 L7 21 Z" />
+    
+    <!-- Viande -->
+    <path class="burger" d="M7 21 L43 21 L43 27 L7 27 Z" />
+    
+    <!-- Pain inférieur -->
+    <path class="bun-bottom" d="M7 27 L43 27 L45 32 L5 32 Z" />
+  </g>
+  
+  <!-- Texte du logo -->
+  <text x="80" y="30" text-anchor="middle" class="logo-text">STREET</text>
+  <text x="80" y="48" text-anchor="middle" class="logo-text">BURGER</text>
+</svg>

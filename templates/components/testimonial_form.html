@@ -1,0 +1,180 @@
+<!-- Formulaire pour soumettre un témoignage -->
+<div class="testimonial-form-container">
+  <form
+    method="POST"
+    action="{{ url_for('add_testimonial') }}"
+    id="testimonialForm"
+  >
+    <div class="form-group">
+      <label for="name">Votre nom</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        class="form-control"
+        placeholder="Votre nom"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Note</label>
+      <div class="rating-container">
+        <div class="rating-option">
+          <input type="radio" id="rating-1" name="rating" value="1" />
+          <label for="rating-1" class="rating-label">
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <span class="rating-text">1 - Déçu</span>
+          </label>
+        </div>
+        <div class="rating-option">
+          <input type="radio" id="rating-2" name="rating" value="2" />
+          <label for="rating-2" class="rating-label">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <span class="rating-text">2 - Moyen</span>
+          </label>
+        </div>
+        <div class="rating-option">
+          <input type="radio" id="rating-3" name="rating" value="3" />
+          <label for="rating-3" class="rating-label">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <span class="rating-text">3 - Bon</span>
+          </label>
+        </div>
+        <div class="rating-option">
+          <input type="radio" id="rating-4" name="rating" value="4" />
+          <label for="rating-4" class="rating-label">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+            <span class="rating-text">4 - Très bon</span>
+          </label>
+        </div>
+        <div class="rating-option">
+          <input type="radio" id="rating-5" name="rating" value="5" checked />
+          <label for="rating-5" class="rating-label">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <span class="rating-text">5 - Excellent</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="comment">Commentaire</label>
+      <textarea
+        id="comment"
+        name="comment"
+        class="form-control"
+        placeholder="Partagez votre expérience chez Street Burger"
+        rows="4"
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary w-100">
+        Envoyer l'avis
+      </button>
+    </div>
+  </form>
+</div>
+
+<style>
+  /* Styles pour le formulaire de témoignage */
+  .testimonial-form-container {
+    max-width: 100%;
+  }
+
+  .rating-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .rating-option {
+    display: flex;
+    align-items: center;
+  }
+
+  .rating-option input[type="radio"] {
+    display: none;
+  }
+
+  .rating-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.3s ease;
+    background-color: var(--bg-alt);
+    width: 100%;
+  }
+
+  .rating-label:hover,
+  .rating-option input[type="radio"]:checked + .rating-label {
+    background-color: var(--primary);
+    color: var(--dark-bg);
+  }
+
+  .rating-label i {
+    margin-right: 2px;
+  }
+
+  .rating-label:hover i,
+  .rating-option input[type="radio"]:checked + .rating-label i {
+    color: var(--dark-bg);
+  }
+
+  .rating-text {
+    margin-left: 8px;
+  }
+
+  .error-message {
+    color: var(--secondary);
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: block;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Amélioration visuelle de la sélection des notes
+    const ratingLabels = document.querySelectorAll(".rating-label");
+    const ratingInputs = document.querySelectorAll('input[name="rating"]');
+
+    ratingLabels.forEach((label, idx) => {
+      label.addEventListener("click", () => {
+        // Mise à jour visuelle de toutes les options
+        ratingLabels.forEach((lbl, i) => {
+          if (i <= idx) {
+            lbl.classList.add("active");
+          } else {
+            lbl.classList.remove("active");
+          }
+        });
+      });
+    });
+  });
+</script>

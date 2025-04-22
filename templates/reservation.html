@@ -1,0 +1,293 @@
+{% extends 'base.html' %} {% block title %}Réservation - Street Burger{%
+endblock %} {% block description %}Réservez une table chez Street Burger.
+Indiquez votre date, heure et nombre de personnes pour profiter de nos délicieux
+burgers dans une ambiance street et conviviale.{% endblock %} {% block content
+%}
+<!-- Reservation Header -->
+<section class="section section-dark py-4 mt-4">
+  <div class="container">
+    <h1 class="text-center reveal-from-bottom">Réserver une table</h1>
+    <p class="text-center text-gray mb-4 reveal-from-bottom">
+      Assurez-vous d'avoir une place et venez profiter de l'expérience Street
+      Burger.
+    </p>
+  </div>
+</section>
+
+<!-- Reservation Form Section -->
+<section class="section">
+  <div class="container">
+    <div class="reservation-form reveal-from-bottom">
+      <form
+        method="POST"
+        action="{{ url_for('reservation') }}"
+        id="reservationForm"
+      >
+        {{ form.hidden_tag() }}
+
+        <h2 class="form-title">Détails de votre réservation</h2>
+
+        <div class="form-row">
+          <div class="form-col">
+            <div class="form-group">
+              {{ form.name.label }} {{ form.name(class="form-control",
+              placeholder="Votre nom complet") }} {% if form.name.errors %}
+              <span class="error-message">
+                {% for error in form.name.errors %} {{ error }} {% endfor %}
+              </span>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="form-col">
+            <div class="form-group">
+              {{ form.email.label }} {{ form.email(class="form-control",
+              placeholder="Votre adresse email") }} {% if form.email.errors %}
+              <span class="error-message">
+                {% for error in form.email.errors %} {{ error }} {% endfor %}
+              </span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-col">
+            <div class="form-group">
+              {{ form.phone.label }} {{ form.phone(class="form-control",
+              placeholder="Votre numéro de téléphone") }} {% if
+              form.phone.errors %}
+              <span class="error-message">
+                {% for error in form.phone.errors %} {{ error }} {% endfor %}
+              </span>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="form-col">
+            <div class="form-group">
+              {{ form.guests.label }} {{ form.guests(class="form-control",
+              min=1, max=10) }} {% if form.guests.errors %}
+              <span class="error-message">
+                {% for error in form.guests.errors %} {{ error }} {% endfor %}
+              </span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-col">
+            <div class="form-group">
+              {{ form.date.label }} {{ form.date(class="form-control",
+              id="date", type="date") }} {% if form.date.errors %}
+              <span class="error-message">
+                {% for error in form.date.errors %} {{ error }} {% endfor %}
+              </span>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="form-col">
+            <div class="form-group">
+              {{ form.time.label }} {{ form.time(class="form-control") }} {% if
+              form.time.errors %}
+              <span class="error-message">
+                {% for error in form.time.errors %} {{ error }} {% endfor %}
+              </span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          {{ form.message.label }} {{ form.message(class="form-control",
+          placeholder="Requêtes spéciales ou allergies ?", rows=3) }} {% if
+          form.message.errors %}
+          <span class="error-message">
+            {% for error in form.message.errors %} {{ error }} {% endfor %}
+          </span>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          {{ form.submit(class="btn btn-primary w-100") }}
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Reservation Info Section -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="row">
+      <div class="col reveal-from-left">
+        <h2>Informations importantes</h2>
+        <ul class="info-list">
+          <li>
+            <i class="fas fa-info-circle"></i>
+            <span
+              >Les réservations sont disponibles jusqu'à 1h avant l'heure
+              souhaitée.</span
+            >
+          </li>
+          <li>
+            <i class="fas fa-info-circle"></i>
+            <span
+              >Pour les groupes de plus de 10 personnes, merci de nous contacter
+              directement au 01 23 45 67 89.</span
+            >
+          </li>
+          <li>
+            <i class="fas fa-info-circle"></i>
+            <span
+              >Votre table est réservée pour une durée de 2 heures
+              maximum.</span
+            >
+          </li>
+          <li>
+            <i class="fas fa-info-circle"></i>
+            <span
+              >En cas d'annulation, merci de nous prévenir au moins 2 heures à
+              l'avance.</span
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col reveal-from-right">
+        <h2>Nos Horaires</h2>
+        <div class="opening-hours">
+          <div class="hours-item">
+            <span>Lundi - Jeudi</span>
+            <span>11h30 - 14h30 / 18h30 - 22h30</span>
+          </div>
+          <div class="hours-item">
+            <span>Vendredi - Samedi</span>
+            <span>11h30 - 15h00 / 18h30 - 23h30</span>
+          </div>
+          <div class="hours-item">
+            <span>Dimanche</span>
+            <span>12h00 - 15h00 / 18h30 - 22h00</span>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <h3>Contact</h3>
+          <p>Pour toute question concernant votre réservation :</p>
+          <p><i class="fas fa-phone"></i> 01 23 45 67 89</p>
+          <p><i class="fas fa-envelope"></i> reservation@streetburger.fr</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Food Preview Section -->
+<section class="section">
+  <div class="container">
+    <div class="text-center mb-4 reveal-from-bottom">
+      <h2>À la carte cette semaine</h2>
+      <p class="text-gray">Un avant-goût de ce qui vous attend.</p>
+    </div>
+
+    <div class="food-preview-slider reveal-from-bottom">
+      <div class="row">
+        <div class="col">
+          <div class="food-preview-item">
+            <img
+              src="/static/images/menu/street_smash.jpg"
+              alt="Street Smash"
+              loading="lazy"
+            />
+            <div class="food-preview-content">
+              <h3>Street Smash</h3>
+              <p>Notre burger signature.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="food-preview-item">
+            <img
+              src="/static/images/menu/mac_cheese.jpg"
+              alt="Mac & Cheese"
+              loading="lazy"
+            />
+            <div class="food-preview-content">
+              <h3>Mac & Cheese</h3>
+              <p>Crémeux à souhait.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="food-preview-item">
+            <img
+              src="/static/images/menu/cheesecake.jpg"
+              alt="Cheesecake"
+              loading="lazy"
+            />
+            <div class="food-preview-content">
+              <h3>Cheesecake</h3>
+              <p>Douceur en fin de repas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="{{ url_for('menu') }}" class="btn btn-outline"
+        >Voir le menu complet</a
+      >
+    </div>
+  </div>
+</section>
+{% endblock %} {% block extra_scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Définir la date minimum pour le champ de date (aujourd'hui)
+    const dateInput = document.getElementById("date");
+    if (dateInput) {
+      const today = new Date().toISOString().split("T")[0];
+      dateInput.setAttribute("min", today);
+
+      // Si la date n'est pas définie, la définir à aujourd'hui
+      if (!dateInput.value) {
+        dateInput.value = today;
+      }
+    }
+
+    // Validation du formulaire avant soumission
+    const reservationForm = document.getElementById("reservationForm");
+
+    if (reservationForm) {
+      reservationForm.addEventListener("submit", function (e) {
+        let isValid = true;
+
+        // Exemple de validation simple côté client
+        const nameInput = document.querySelector('input[name="name"]');
+        if (nameInput && nameInput.value.trim() === "") {
+          const errorSpan = document.createElement("span");
+          errorSpan.className = "error-message";
+          errorSpan.textContent = "Veuillez entrer votre nom";
+
+          // Ajouter l'erreur si elle n'existe pas déjà
+          if (!nameInput.parentNode.querySelector(".error-message")) {
+            nameInput.parentNode.appendChild(errorSpan);
+          }
+
+          isValid = false;
+        }
+
+        // Si le formulaire n'est pas valide, empêcher la soumission
+        if (!isValid) {
+          e.preventDefault();
+        }
+      });
+    }
+  });
+</script>
+{% endblock %}

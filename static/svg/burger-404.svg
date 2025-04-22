@@ -1,0 +1,54 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bun-top { fill: #E6A230; }
+    .bun-bottom { fill: #E6A230; }
+    .lettuce { fill: #39FF14; }
+    .cheese { fill: #FFD100; }
+    .tomato { fill: #FF3A3A; }
+    .patty { fill: #8B4513; }
+    .sesame { fill: #FFFFFF; }
+    .text-404 { fill: #FFFFFF; font-family: 'Bebas Neue', sans-serif; font-size: 48px; }
+    
+    .burger {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+  
+  <g class="burger" transform="translate(50, 50)">
+    <!-- Pain supérieur -->
+    <path class="bun-top" d="M200 80 C200 40, 0 40, 0 80 L0 100 L200 100 Z" />
+    
+    <!-- Sésame sur le pain -->
+    <ellipse class="sesame" cx="40" cy="60" rx="5" ry="7" />
+    <ellipse class="sesame" cx="70" cy="55" rx="5" ry="7" />
+    <ellipse class="sesame" cx="100" cy="50" rx="5" ry="7" />
+    <ellipse class="sesame" cx="130" cy="55" rx="5" ry="7" />
+    <ellipse class="sesame" cx="160" cy="60" rx="5" ry="7" />
+    
+    <!-- Laitue -->
+    <path class="lettuce" d="M0 100 L200 100 L210 115 L-10 115 Z" />
+    
+    <!-- Tomate -->
+    <rect class="tomato" x="10" y="115" width="180" height="15" rx="2" />
+    
+    <!-- Fromage -->
+    <path class="cheese" d="M5 130 L195 130 L205 145 L-5 145 Z" />
+    
+    <!-- Steak -->
+    <rect class="patty" x="10" y="145" width="180" height="30" rx="5" />
+    
+    <!-- Fromage en dessous -->
+    <path class="cheese" d="M5 175 L195 175 L185 190 L15 190 Z" />
+    
+    <!-- Pain inférieur -->
+    <path class="bun-bottom" d="M15 190 L185 190 L200 210 L0 210 Z" />
+    
+    <!-- Texte 404 -->
+    <text x="100" y="150" text-anchor="middle" class="text-404">404</text>
+  </g>
+</svg>

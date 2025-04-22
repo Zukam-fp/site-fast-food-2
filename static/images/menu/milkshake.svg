@@ -1,0 +1,100 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .gobelet { fill: #E0E0E0; }
+    .gobelet-contour { fill: none; stroke: #BBBBBB; stroke-width: 2; }
+    .milkshake-chocolat { fill: #8B4513; }
+    .milkshake-fraise { fill: #FF69B4; }
+    .milkshake-vanille { fill: #FFF8DC; }
+    .chantilly { fill: #FFFFFF; }
+    .cerise { fill: #FF0000; }
+    .paille { fill: #FF5252; }
+    .paille-ligne { fill: none; stroke: #C62828; stroke-width: 1.5; stroke-dasharray: 2,2; }
+    .oreo { fill: #333333; }
+    .oreo-creme { fill: #FFFFFF; }
+    
+    .milkshake-container {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+  </style>
+  
+  <g class="milkshake-container" transform="translate(100, 50)">
+    <!-- Paille -->
+    <path class="paille" d="M90 20 C90 20, 95 40, 95 70 L95 170 C95 175, 90 175, 90 170 L90 70 C90 40, 85 20, 85 20 Z" />
+    <path class="paille-ligne" d="M87.5 30 L92.5 30" />
+    <path class="paille-ligne" d="M87.5 50 L92.5 50" />
+    <path class="paille-ligne" d="M87.5 70 L92.5 70" />
+    <path class="paille-ligne" d="M87.5 90 L92.5 90" />
+    <path class="paille-ligne" d="M87.5 110 L92.5 110" />
+    <path class="paille-ligne" d="M87.5 130 L92.5 130" />
+    <path class="paille-ligne" d="M87.5 150 L92.5 150" />
+    
+    <!-- Gobelet -->
+    <path class="gobelet" d="M30 65 L70 65 L80 185 L20 185 Z" />
+    <path class="gobelet-contour" d="M32 75 L68 75" />
+    <path class="gobelet-contour" d="M30 95 L70 95" />
+    <path class="gobelet-contour" d="M28 115 L72 115" />
+    <path class="gobelet-contour" d="M26 135 L74 135" />
+    <path class="gobelet-contour" d="M24 155 L76 155" />
+    <path class="gobelet-contour" d="M22 175 L78 175" />
+    
+    <!-- Milkshakes de différentes saveurs -->
+    <g class="milkshake-chocolat" transform="translate(-100, 0)">
+      <!-- Chocolat Milkshake -->
+      <path class="milkshake-chocolat" d="M130 65 L170 65 L180 185 L120 185 Z" />
+      
+      <!-- Chantilly -->
+      <path class="chantilly" d="M130 65 Q 135 50, 150 55 Q 165 50, 170 65 Z" />
+      
+      <!-- Sirop de chocolat -->
+      <path class="oreo" d="M140 65 Q 145 75, 150 70 Q 155 75, 160 65" />
+      
+      <!-- Cookie Oreo -->
+      <g transform="translate(150, 57) rotate(-30)">
+        <rect class="oreo" x="-8" y="-3" width="16" height="6" rx="1" />
+        <rect class="oreo-creme" x="-6" y="-1" width="12" height="2" />
+      </g>
+    </g>
+    
+    <!-- Milkshake Fraise -->
+    <g transform="translate(0, 0)">
+      <path class="milkshake-fraise" d="M30 65 L70 65 L80 185 L20 185 Z" />
+      
+      <!-- Chantilly -->
+      <path class="chantilly" d="M30 65 Q 35 50, 50 55 Q 65 50, 70 65 Z" />
+      
+      <!-- Cerise sur le dessus -->
+      <circle class="cerise" cx="50" cy="50" r="5" />
+      
+      <!-- Tige de la cerise -->
+      <path fill="none" stroke="#006400" stroke-width="1.5" d="M50 45 C 50 45, 45 40, 40 45" />
+    </g>
+    
+    <!-- Milkshake Vanille -->
+    <g transform="translate(100, 0)">
+      <!-- Vanille Milkshake -->
+      <path class="milkshake-vanille" d="M30 65 L70 65 L80 185 L20 185 Z" />
+      
+      <!-- Chantilly -->
+      <path class="chantilly" d="M30 65 Q 35 50, 50 55 Q 65 50, 70 65 Z" />
+      
+      <!-- Morceaux d'Oreos -->
+      <g transform="translate(40, 75)">
+        <rect class="oreo" width="5" height="5" />
+      </g>
+      <g transform="translate(60, 85)">
+        <rect class="oreo" width="6" height="6" />
+      </g>
+      <g transform="translate(45, 100)">
+        <rect class="oreo" width="4" height="4" />
+      </g>
+      <g transform="translate(55, 120)">
+        <rect class="oreo" width="5" height="5" />
+      </g>
+    </g>
+  </g>
+</svg>

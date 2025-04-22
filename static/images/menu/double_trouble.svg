@@ -1,0 +1,57 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bun-top { fill: #E6A230; }
+    .bun-bottom { fill: #E6A230; }
+    .lettuce { fill: #39FF14; }
+    .cheese { fill: #FFD100; }
+    .bacon { fill: #B83C3C; }
+    .patty { fill: #8B4513; }
+    .sesame { fill: #FFFFFF; }
+    .sauce-bbq { fill: #8B2222; opacity: 0.9; }
+    
+    .burger {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+  
+  <g class="burger" transform="translate(50, 30)">
+    <!-- Pain supérieur -->
+    <path class="bun-top" d="M200 80 C200 40, 0 40, 0 80 L0 100 L200 100 Z" />
+    
+    <!-- Sésame sur le pain -->
+    <ellipse class="sesame" cx="40" cy="60" rx="5" ry="7" />
+    <ellipse class="sesame" cx="70" cy="55" rx="5" ry="7" />
+    <ellipse class="sesame" cx="100" cy="50" rx="5" ry="7" />
+    <ellipse class="sesame" cx="130" cy="55" rx="5" ry="7" />
+    <ellipse class="sesame" cx="160" cy="60" rx="5" ry="7" />
+    
+    <!-- Sauce BBQ -->
+    <path class="sauce-bbq" d="M0 100 L200 100 L195 110 L5 110 Z" />
+    
+    <!-- Laitue -->
+    <path class="lettuce" d="M5 110 L195 110 L210 120 L-10 120 Z" />
+    
+    <!-- Fromage 1 -->
+    <path class="cheese" d="M5 120 L195 120 L205 130 L-5 130 Z" />
+    
+    <!-- Steak 1 -->
+    <rect class="patty" x="10" y="130" width="180" height="20" rx="5" />
+    
+    <!-- Bacon -->
+    <path class="bacon" d="M20 150 Q 40 145, 60 155 Q 80 165, 100 155 Q 120 145, 140 155 Q 160 165, 180 155 L 180 165 Q 160 175, 140 165 Q 120 155, 100 165 Q 80 175, 60 165 Q 40 155, 20 160 Z" />
+    
+    <!-- Fromage 2 -->
+    <path class="cheese" d="M5 165 L195 165 L205 175 L-5 175 Z" />
+    
+    <!-- Steak 2 -->
+    <rect class="patty" x="10" y="175" width="180" height="20" rx="5" />
+    
+    <!-- Pain inférieur -->
+    <path class="bun-bottom" d="M15 195 L185 195 L200 215 L0 215 Z" />
+  </g>
+</svg>

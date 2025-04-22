@@ -1,0 +1,95 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bun-top { fill: #E6A230; }
+    .bun-bottom { fill: #E6A230; }
+    .lettuce { fill: #39FF14; }
+    .cheese { fill: #FFD100; }
+    .tomato { fill: #FF3A3A; }
+    .patty { fill: #8B4513; }
+    .sesame { fill: #FFFFFF; }
+    .text-500 { fill: #FFFFFF; font-family: 'Bebas Neue', sans-serif; font-size: 48px; }
+    .smoke { fill: #CCCCCC; opacity: 0.6; }
+    
+    .burger {
+      animation: shake 2s ease-in-out infinite;
+    }
+    
+    .smoke-1 {
+      animation: rise 3s infinite ease-out;
+      animation-delay: 0.2s;
+    }
+    
+    .smoke-2 {
+      animation: rise 3s infinite ease-out;
+      animation-delay: 0.7s;
+    }
+    
+    .smoke-3 {
+      animation: rise 3s infinite ease-out;
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-5deg); }
+      75% { transform: rotate(5deg); }
+    }
+    
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.5;
+      }
+      80% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-100px) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+  
+  <!-- Fumée -->
+  <path class="smoke-1" d="M140,50 C130,40 120,40 120,30 C120,20 130,20 130,10 C130,0 140,0 150,10 C160,0 170,0 170,10 C170,20 180,20 180,30 C180,40 170,40 160,50 Z" />
+  
+  <path class="smoke-2" d="M100,70 C90,60 80,60 80,50 C80,40 90,40 90,30 C90,20 100,20 110,30 C120,20 130,20 130,30 C130,40 140,40 140,50 C140,60 130,60 120,70 Z" />
+  
+  <path class="smoke-3" d="M180,70 C170,60 160,60 160,50 C160,40 170,40 170,30 C170,20 180,20 190,30 C200,20 210,20 210,30 C210,40 220,40 220,50 C220,60 210,60 200,70 Z" />
+  
+  <g class="burger" transform="translate(50, 90)">
+    <!-- Pain supérieur -->
+    <path class="bun-top" d="M200 80 C200 40, 0 40, 0 80 L0 100 L200 100 Z" />
+    
+    <!-- Sésame sur le pain -->
+    <ellipse class="sesame" cx="40" cy="60" rx="5" ry="7" />
+    <ellipse class="sesame" cx="70" cy="55" rx="5" ry="7" />
+    <ellipse class="sesame" cx="100" cy="50" rx="5" ry="7" />
+    <ellipse class="sesame" cx="130" cy="55" rx="5" ry="7" />
+    <ellipse class="sesame" cx="160" cy="60" rx="5" ry="7" />
+    
+    <!-- Laitue -->
+    <path class="lettuce" d="M0 100 L200 100 L210 115 L-10 115 Z" />
+    
+    <!-- Tomate -->
+    <rect class="tomato" x="10" y="115" width="180" height="15" rx="2" />
+    
+    <!-- Fromage -->
+    <path class="cheese" d="M5 130 L195 130 L205 145 L-5 145 Z" />
+    
+    <!-- Steak -->
+    <rect class="patty" x="10" y="145" width="180" height="30" rx="5" />
+    
+    <!-- Fromage en dessous -->
+    <path class="cheese" d="M5 175 L195 175 L185 190 L15 190 Z" />
+    
+    <!-- Pain inférieur -->
+    <path class="bun-bottom" d="M15 190 L185 190 L200 210 L0 210 Z" />
+    
+    <!-- Texte 500 -->
+    <text x="100" y="150" text-anchor="middle" class="text-500">500</text>
+  </g>
+</svg>

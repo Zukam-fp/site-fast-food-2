@@ -1,0 +1,140 @@
+<!-- Header -->
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <!-- Logo -->
+      <div class="logo">
+        <a href="{{ url_for('index') }}">
+          <img src="/static/svg/logo.svg" alt="Street Burger Logo" />
+        </a>
+      </div>
+
+      <!-- Navigation Mobile -->
+      <div class="mobile-nav">
+        <a href="tel:0123456789" class="mobile-phone-btn">
+          <i class="fas fa-phone"></i>
+        </a>
+
+        <button id="mobileMenuBtn" class="mobile-menu-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <!-- Navigation Desktop -->
+      <nav class="desktop-nav">
+        <ul>
+          <li>
+            <a
+              href="{{ url_for('index') }}"
+              class="{% if request.path == url_for('index') %}active{% endif %}"
+              >Accueil</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ url_for('menu') }}"
+              class="{% if request.path == url_for('menu') %}active{% endif %}"
+              >Menu</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ url_for('about') }}"
+              class="{% if request.path == url_for('about') %}active{% endif %}"
+              >À propos</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ url_for('contact') }}"
+              class="{% if request.path == url_for('contact') %}active{% endif %}"
+              >Contact</a
+            >
+          </li>
+          <li>
+            <a
+              href="{{ url_for('reservation') }}"
+              class="{% if request.path == url_for('reservation') %}active{% endif %}"
+              >Réservation</a
+            >
+          </li>
+          {% if current_user.is_authenticated and current_user.is_admin %}
+          <li>
+            <a
+              href="{{ url_for('admin_dashboard') }}"
+              class="{% if 'admin' in request.path %}active{% endif %}"
+              >Admin</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+
+      <!-- Phone Desktop -->
+      <a href="tel:0123456789" class="desktop-phone">
+        <i class="fas fa-phone"></i>
+        <span>01 23 45 67 89</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="mobile-menu">
+  <div class="container">
+    <ul>
+      <li>
+        <a
+          href="{{ url_for('index') }}"
+          class="{% if request.path == url_for('index') %}active{% endif %}"
+          >Accueil</a
+        >
+      </li>
+      <li>
+        <a
+          href="{{ url_for('menu') }}"
+          class="{% if request.path == url_for('menu') %}active{% endif %}"
+          >Menu</a
+        >
+      </li>
+      <li>
+        <a
+          href="{{ url_for('about') }}"
+          class="{% if request.path == url_for('about') %}active{% endif %}"
+          >À propos</a
+        >
+      </li>
+      <li>
+        <a
+          href="{{ url_for('contact') }}"
+          class="{% if request.path == url_for('contact') %}active{% endif %}"
+          >Contact</a
+        >
+      </li>
+      <li>
+        <a
+          href="{{ url_for('reservation') }}"
+          class="{% if request.path == url_for('reservation') %}active{% endif %}"
+          >Réservation</a
+        >
+      </li>
+      {% if current_user.is_authenticated and current_user.is_admin %}
+      <li>
+        <a
+          href="{{ url_for('admin_dashboard') }}"
+          class="{% if 'admin' in request.path %}active{% endif %}"
+          >Admin</a
+        >
+      </li>
+      {% endif %}
+      <li class="mobile-phone-item">
+        <a href="tel:0123456789">
+          <i class="fas fa-phone"></i>
+          <span>01 23 45 67 89</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bar {
+      fill: #FFFFFF;
+      transition: all 0.3s ease;
+    }
+  </style>
+  
+  <!-- Icône de menu hamburger -->
+  <rect class="bar" x="5" y="8" width="20" height="3" rx="1.5" />
+  <rect class="bar" x="5" y="15" width="20" height="3" rx="1.5" />
+  <rect class="bar" x="5" y="22" width="20" height="3" rx="1.5" />
+</svg>

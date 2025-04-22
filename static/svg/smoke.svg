@@ -1,0 +1,10 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .smoke {
+      fill: #CCCCCC;
+      opacity: 0.6;
+    }
+  </style>
+  
+  <path class="smoke" d="M25,50 C15,50 10,40 10,30 C10,20 15,20 15,10 C15,5 20,0 25,0 C30,0 35,5 35,10 C35,20 40,20 40,30 C40,40 35,50 25,50 Z" />
+</svg>

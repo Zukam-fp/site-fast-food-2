@@ -1,0 +1,59 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bun-top { fill: #E6A230; }
+    .bun-bottom { fill: #E6A230; }
+    .lettuce { fill: #39FF14; }
+    .tomato { fill: #FF3A3A; }
+    .chicken { fill: #F5DEB3; }
+    .breading { fill: #CD853F; }
+    .sesame { fill: #FFFFFF; }
+    .coleslaw { fill: #E0FFE0; }
+    .jalapeno { fill: #006600; }
+    .spicy-sauce { fill: #FF4500; opacity: 0.8; }
+    
+    .burger {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+  
+  <g class="burger" transform="translate(50, 50)">
+    <!-- Pain supérieur -->
+    <path class="bun-top" d="M200 80 C200 40, 0 40, 0 80 L0 100 L200 100 Z" />
+    
+    <!-- Sésame sur le pain -->
+    <ellipse class="sesame" cx="40" cy="60" rx="5" ry="7" />
+    <ellipse class="sesame" cx="70" cy="55" rx="5" ry="7" />
+    <ellipse class="sesame" cx="100" cy="50" rx="5" ry="7" />
+    <ellipse class="sesame" cx="130" cy="55" rx="5" ry="7" />
+    <ellipse class="sesame" cx="160" cy="60" rx="5" ry="7" />
+    
+    <!-- Sauce piquante -->
+    <path class="spicy-sauce" d="M0 100 L200 100 L195 110 L5 110 Z" />
+    
+    <!-- Coleslaw -->
+    <path class="coleslaw" d="M5 110 Q 40 105, 60 115 Q 100 105, 140 115 Q 180 105, 195 110 L 195 125 Q 180 115, 140 125 Q 100 115, 60 125 Q 40 115, 5 125 Z" />
+    
+    <!-- Jalapeños (pickles) -->
+    <ellipse class="jalapeno" cx="40" cy="130" rx="15" ry="3" />
+    <ellipse class="jalapeno" cx="90" cy="132" rx="15" ry="3" />
+    <ellipse class="jalapeno" cx="140" cy="129" rx="15" ry="3" />
+    <ellipse class="jalapeno" cx="165" cy="133" rx="15" ry="3" />
+    
+    <!-- Poulet pané -->
+    <g>
+        <!-- Contour du poulet pané -->
+        <path class="breading" d="M10 140 Q 30 135, 50 145 Q 75 135, 100 145 Q 125 135, 150 145 Q 175 135, 190 140 L 190 170 Q 175 165, 150 175 Q 125 165, 100 175 Q 75 165, 50 175 Q 30 165, 10 170 Z" />
+        
+        <!-- Détails du poulet pané -->
+        <path class="chicken" d="M20 145 Q 35 140, 50 150 Q 70 140, 90 150 Q 110 140, 130 150 Q 150 140, 170 145 Q 180 142, 180 165 Q 170 160, 150 170 Q 130 160, 110 170 Q 90 160, 70 170 Q 50 160, 30 165 Q 20 165, 20 145 Z" />
+    </g>
+    
+    <!-- Pain inférieur -->
+    <path class="bun-bottom" d="M15 175 L185 175 L200 195 L0 195 Z" />
+  </g>
+</svg>

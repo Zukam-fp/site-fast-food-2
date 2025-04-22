@@ -1,0 +1,178 @@
+{% extends 'base.html' %} {% block title %}{{ title }} - Admin Street Burger{%
+endblock %} {% block description %}Interface d'administration pour gérer le
+contenu du site Street Burger.{% endblock %} {% block content %}
+<div class="admin-container">
+  <div class="container">
+    <div class="admin-header">
+      <div class="row justify-between align-center">
+        <div class="col">
+          <h1>{{ title }}</h1>
+        </div>
+        <div class="col text-right">
+          <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline">
+            <i class="fas fa-arrow-left"></i> Retour au tableau de bord
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-content">
+      <div class="upload-form">
+        <form method="POST" enctype="multipart/form-data">
+          {{ form.hidden_tag() }}
+
+          <!-- Form Fields for Menu Item -->
+          {% if 'menu' in request.path %}
+          <div class="form-row">
+            <div class="form-col">
+              <div class="form-group">
+                {{ form.name.label }} {{ form.name(class="form-control",
+                placeholder="Nom du plat") }} {% if form.name.errors %}
+                <span class="error-message">
+                  {% for error in form.name.errors %} {{ error }} {% endfor %}
+                </span>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="form-col">
+              <div class="form-group">
+                {{ form.price.label }} {{ form.price(class="form-control",
+                placeholder="9.90") }} {% if form.price.errors %}
+                <span class="error-message">
+                  {% for error in form.price.errors %} {{ error }} {% endfor %}
+                </span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            {{ form.description.label }} {{
+            form.description(class="form-control", placeholder="Description du
+            plat", rows=3) }} {% if form.description.errors %}
+            <span class="error-message">
+              {% for error in form.description.errors %} {{ error }} {% endfor
+              %}
+            </span>
+            {% endif %}
+          </div>
+
+          <div class="form-row">
+            <div class="form-col">
+              <div class="form-group">
+                {{ form.category.label }} {{ form.category(class="form-control")
+                }} {% if form.category.errors %}
+                <span class="error-message">
+                  {% for error in form.category.errors %} {{ error }} {% endfor
+                  %}
+                </span>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="form-col">
+              <div class="form-group">
+                {{ form.image_path.label }} {{
+                form.image_path(class="form-control",
+                placeholder="menu/burger.jpg") }} {% if form.image_path.errors
+                %}
+                <span class="error-message">
+                  {% for error in form.image_path.errors %} {{ error }} {%
+                  endfor %}
+                </span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-col">
+              <div class="form-check">
+                {{ form.is_vegetarian(class="form-check-input") }} {{
+                form.is_vegetarian.label(class="form-check-label") }}
+              </div>
+            </div>
+
+            <div class="form-col">
+              <div class="form-check">
+                {{ form.is_spicy(class="form-check-input") }} {{
+                form.is_spicy.label(class="form-check-label") }}
+              </div>
+            </div>
+
+            <div class="form-col">
+              <div class="form-check">
+                {{ form.featured(class="form-check-input") }} {{
+                form.featured.label(class="form-check-label") }}
+              </div>
+            </div>
+          </div>
+          <!-- Form Fields for Promo Event -->
+          {% elif 'promo' in request.path %}
+          <div class="form-group">
+            {{ form.title.label }} {{ form.title(class="form-control",
+            placeholder="Titre de la promotion") }} {% if form.title.errors %}
+            <span class="error-message">
+              {% for error in form.title.errors %} {{ error }} {% endfor %}
+            </span>
+            {% endif %}
+          </div>
+
+          <div class="form-group">
+            {{ form.description.label }} {{
+            form.description(class="form-control", placeholder="Description de
+            la promotion", rows=3) }} {% if form.description.errors %}
+            <span class="error-message">
+              {% for error in form.description.errors %} {{ error }} {% endfor
+              %}
+            </span>
+            {% endif %}
+          </div>
+
+          <div class="form-row">
+            <div class="form-col">
+              <div class="form-group">
+                {{ form.end_date.label }} {{ form.end_date(class="form-control",
+                type="date") }} {% if form.end_date.errors %}
+                <span class="error-message">
+                  {% for error in form.end_date.errors %} {{ error }} {% endfor
+                  %}
+                </span>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="form-col">
+              <div class="form-check mt-4">
+                {{ form.is_active(class="form-check-input") }} {{
+                form.is_active.label(class="form-check-label") }}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block extra_scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Date minimum pour les formulaires avec dates
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+    if (dateInputs.length > 0) {
+      const today = new Date().toISOString().split("T")[0];
+      dateInputs.forEach((input) => {
+        if (!input.value) {
+          input.setAttribute("min", today);
+        }
+      });
+    }
+  });
+</script>
+{% endblock %}

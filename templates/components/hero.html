@@ -1,0 +1,84 @@
+<!-- Hero Section -->
+<section class="hero">
+  <img
+    src="/static/images/hero-bg.jpg"
+    alt="Street Burger Hero Image"
+    class="hero-bg"
+  />
+  <div class="hero-overlay"></div>
+
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">STREET BURGER</h1>
+      <p class="hero-subtitle">
+        Smash Burgers & Street Food avec une touche urbaine et authentique
+      </p>
+
+      <div class="hero-cta"></div>
+
+      <div class="hero-badges mt-4">
+        <div class="badge-item">
+          <i class="fas fa-leaf"></i> Ingrédients frais
+        </div>
+        <div class="badge-item"><i class="fas fa-fire"></i> Smash burgers</div>
+        <div class="badge-item">
+          <i class="fas fa-motorcycle"></i> Livraison
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Animation de fumée -->
+  <div class="smoke-animation">
+    <div class="smoke-container">
+      <div class="smoke-particle smoke-1"></div>
+      <div class="smoke-particle smoke-2"></div>
+      <div class="smoke-particle smoke-3"></div>
+      <div class="smoke-particle smoke-4"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Styles supplémentaires pour le hero */
+  .hero-badges {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+  }
+
+  .badge-item {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 8px 16px;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+
+  .badge-item i {
+    color: var(--primary);
+    margin-right: 8px;
+  }
+
+  /* Animation de fumée */
+  .smoke-animation {
+    position: absolute;
+    bottom: 20px;
+    left: 10%;
+    z-index: 2;
+  }
+
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .hero-badges {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .smoke-animation {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,334 @@
+{% extends 'base.html' %} {% block title %}Dashboard Admin - Street Burger{%
+endblock %} {% block description %}Tableau de bord administrateur de Street
+Burger.{% endblock %} {% block content %}
+<div class="admin-container">
+  <div class="container">
+    <div class="admin-header">
+      <div class="row justify-between align-center">
+        <div class="col">
+          <h1>Tableau de bord</h1>
+          <p>Bienvenue, {{ current_user.username }}</p>
+        </div>
+        <div class="col text-right">
+          <a href="{{ url_for('logout') }}" class="btn btn-outline">
+            <i class="fas fa-sign-out-alt"></i> Déconnexion
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin Navigation -->
+    <div class="admin-nav">
+      <ul class="admin-nav-list">
+        <li class="admin-nav-item active">
+          <a href="#reservations" class="admin-nav-link">Réservations</a>
+        </li>
+        <li class="admin-nav-item">
+          <a href="#testimonials" class="admin-nav-link">Avis Clients</a>
+        </li>
+        <li class="admin-nav-item">
+          <a href="#menu-items" class="admin-nav-link">Menu</a>
+        </li>
+        <li class="admin-nav-item">
+          <a href="#promos" class="admin-nav-link">Promotions</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Reservations Section -->
+    <div id="reservations" class="admin-section">
+      <div class="admin-content">
+        <div class="section-header">
+          <h2>Réservations récentes</h2>
+        </div>
+
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Personnes</th>
+                <th>Statut</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for reservation in reservations %}
+              <tr>
+                <td>{{ reservation.name }}</td>
+                <td>{{ reservation.date.strftime('%d/%m/%Y') }}</td>
+                <td>{{ reservation.time }}</td>
+                <td>{{ reservation.guests }}</td>
+                <td>
+                  <span class="status-badge status-{{ reservation.status }}">
+                    {% if reservation.status == 'pending' %} En attente {% elif
+                    reservation.status == 'confirmed' %} Confirmée {% elif
+                    reservation.status == 'cancelled' %} Annulée {% endif %}
+                  </span>
+                </td>
+                <td>
+                  <div class="admin-actions">
+                    {% if reservation.status == 'pending' %}
+                    <form
+                      action="{{ url_for('confirm_reservation', reservation_id=reservation.id) }}"
+                      method="POST"
+                      style="display: inline"
+                    >
+                      <button type="submit" class="action-btn btn-primary">
+                        Confirmer
+                      </button>
+                    </form>
+                    <form
+                      action="{{ url_for('cancel_reservation', reservation_id=reservation.id) }}"
+                      method="POST"
+                      style="display: inline"
+                    >
+                      <button type="submit" class="action-btn btn-secondary">
+                        Annuler
+                      </button>
+                    </form>
+                    {% else %}
+                    <button class="action-btn" disabled>
+                      {{ reservation.status }}
+                    </button>
+                    {% endif %}
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-footer mt-3">
+          <a href="#" class="btn btn-outline">Voir toutes les réservations</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div id="testimonials" class="admin-section">
+      <div class="admin-content">
+        <div class="section-header">
+          <h2>Avis clients en attente</h2>
+        </div>
+
+        {% if pending_testimonials %}
+        <div class="testimonials-grid">
+          {% for testimonial in pending_testimonials %}
+          <div class="admin-testimonial-card">
+            <div class="testimonial-header">
+              <h3>{{ testimonial.name }}</h3>
+              <div class="testimonial-date">
+                {{ testimonial.date.strftime('%d/%m/%Y') }}
+              </div>
+            </div>
+
+            <div class="testimonial-rating">
+              {% for i in range(testimonial.rating) %}
+              <i class="fas fa-star"></i>
+              {% endfor %} {% for i in range(5 - testimonial.rating) %}
+              <i class="far fa-star"></i>
+              {% endfor %}
+            </div>
+
+            <div class="testimonial-content">
+              <p>{{ testimonial.comment }}</p>
+            </div>
+
+            <div class="testimonial-actions">
+              <form
+                action="{{ url_for('approve_testimonial', testimonial_id=testimonial.id) }}"
+                method="POST"
+                style="display: inline"
+              >
+                <button type="submit" class="action-btn btn-primary">
+                  Approuver
+                </button>
+              </form>
+              <form
+                action="{{ url_for('delete_testimonial', testimonial_id=testimonial.id) }}"
+                method="POST"
+                style="display: inline"
+              >
+                <button type="submit" class="action-btn btn-secondary">
+                  Supprimer
+                </button>
+              </form>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+          <p>Aucun avis en attente d'approbation.</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Menu Items Section -->
+    <div id="menu-items" class="admin-section">
+      <div class="admin-content">
+        <div class="section-header d-flex justify-between align-center">
+          <h2>Gestion du Menu</h2>
+          <a href="{{ url_for('add_menu_item') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Ajouter un produit
+          </a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Catégorie</th>
+                <th>Prix</th>
+                <th>Végétarien</th>
+                <th>Épicé</th>
+                <th>Mis en avant</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in menu_items %}
+              <tr>
+                <td>{{ item.name }}</td>
+                <td>
+                  {% if item.category == 'burger' %} Burger {% elif
+                  item.category == 'side' %} Accompagnement {% elif
+                  item.category == 'dessert' %} Dessert {% elif item.category ==
+                  'boisson' %} Boisson {% endif %}
+                </td>
+                <td>{{ "%.2f"|format(item.price) }}€</td>
+                <td>
+                  {% if item.is_vegetarian %}<i
+                    class="fas fa-check text-accent"
+                  ></i
+                  >{% else %}<i class="fas fa-times text-gray"></i>{% endif %}
+                </td>
+                <td>
+                  {% if item.is_spicy %}<i
+                    class="fas fa-check text-secondary"
+                  ></i
+                  >{% else %}<i class="fas fa-times text-gray"></i>{% endif %}
+                </td>
+                <td>
+                  {% if item.featured %}<i class="fas fa-check text-primary"></i
+                  >{% else %}<i class="fas fa-times text-gray"></i>{% endif %}
+                </td>
+                <td>
+                  <div class="admin-actions">
+                    <a
+                      href="{{ url_for('edit_menu_item', item_id=item.id) }}"
+                      class="action-btn btn-primary"
+                      >Modifier</a
+                    >
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Promos Section -->
+    <div id="promos" class="admin-section">
+      <div class="admin-content">
+        <div class="section-header d-flex justify-between align-center">
+          <h2>Gestion des Promotions</h2>
+          <a href="{{ url_for('add_promo') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Ajouter une promo
+          </a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Date de fin</th>
+                <th>Statut</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for promo in promos %}
+              <tr>
+                <td>{{ promo.title }}</td>
+                <td>{{ promo.description|truncate(50) }}</td>
+                <td>{{ promo.end_date.strftime('%d/%m/%Y') }}</td>
+                <td>
+                  <span
+                    class="status-badge {% if promo.is_active %}status-active{% else %}status-inactive{% endif %}"
+                  >
+                    {% if promo.is_active %} Active {% else %} Inactive {% endif
+                    %}
+                  </span>
+                </td>
+                <td>
+                  <div class="admin-actions">
+                    <a
+                      href="{{ url_for('add_promo') }}?id={{ promo.id }}"
+                      class="action-btn btn-primary"
+                      >Modifier</a
+                    >
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block extra_scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Navigation par onglets
+    const navLinks = document.querySelectorAll(".admin-nav-link");
+    const sections = document.querySelectorAll(".admin-section");
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        // Retirer la classe active de tous les liens
+        navLinks.forEach((el) => {
+          el.parentElement.classList.remove("active");
+        });
+
+        // Ajouter la classe active au lien cliqué
+        this.parentElement.classList.add("active");
+
+        // Masquer toutes les sections
+        sections.forEach((section) => {
+          section.style.display = "none";
+        });
+
+        // Afficher la section correspondante
+        const targetId = this.getAttribute("href").substring(1);
+        document.getElementById(targetId).style.display = "block";
+      });
+    });
+
+    // Afficher la première section par défaut et masquer les autres
+    if (sections.length > 0) {
+      sections.forEach((section, index) => {
+        if (index === 0) {
+          section.style.display = "block";
+        } else {
+          section.style.display = "none";
+        }
+      });
+    }
+  });
+</script>
+{% endblock %}

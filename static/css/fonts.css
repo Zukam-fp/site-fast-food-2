@@ -1,0 +1,22 @@
+/*
+ * StreetBurger - Typographie
+ * Polices et styles typographiques
+ */
+
+/* Bebas Neue - Titres en gras, style street */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+/* Barlow - Corps de texte et contenu général */
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap");
+
+/* Barlow Condensed - Navigation et boutons */
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&display=swap");
+
+/* Police de remplacement en cas de problème */
+@font-face {
+  font-family: "Bebas Neue Fallback";
+  src: local("Impact");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

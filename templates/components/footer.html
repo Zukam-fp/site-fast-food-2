@@ -1,0 +1,194 @@
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="/static/svg/logo.svg" alt="Street Burger Logo" />
+        </div>
+        <p class="footer-text">
+          Street Burger, c'est l'authenticité de la street food avec des
+          ingrédients de qualité et un service chaleureux.
+        </p>
+        <div class="social-links">
+          <a
+            href="https://www.facebook.com/streetburgerparis"
+            target="_blank"
+            rel="noopener"
+            class="social-link"
+          >
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/streetburgerparis"
+            target="_blank"
+            rel="noopener"
+            class="social-link"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://twitter.com/streetburgerparis"
+            target="_blank"
+            rel="noopener"
+            class="social-link"
+          >
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Navigation</h3>
+        <ul class="footer-links">
+          <li class="footer-link">
+            <a href="{{ url_for('index') }}">Accueil</a>
+          </li>
+          <li class="footer-link"><a href="{{ url_for('menu') }}">Menu</a></li>
+          <li class="footer-link">
+            <a href="{{ url_for('about') }}">À propos</a>
+          </li>
+
+          <li class="footer-link">
+            <a href="{{ url_for('contact') }}">Contact</a>
+          </li>
+          <li class="footer-link">
+            <a href="{{ url_for('reservation') }}">Réservation</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Horaires</h3>
+        <ul class="footer-hours">
+          <li class="hours-item">
+            <span>Lundi - Jeudi</span>
+            <span>11h30 - 14h30 / 18h30 - 22h30</span>
+          </li>
+          <li class="hours-item">
+            <span>Vendredi - Samedi</span>
+            <span>11h30 - 15h00 / 18h30 - 23h30</span>
+          </li>
+          <li class="hours-item">
+            <span>Dimanche</span>
+            <span>12h00 - 15h00 / 18h30 - 22h00</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Contact</h3>
+        <p class="footer-text">
+          <i class="fas fa-map-marker-alt"></i> 42 Rue de la Street Food<br />
+          75011 Paris, France
+        </p>
+        <p class="footer-text"><i class="fas fa-phone"></i> 01 23 45 67 89</p>
+        <p class="footer-text">
+          <i class="fas fa-envelope"></i> hello@streetburger.fr
+        </p>
+        <div class="delivery-badges mt-3">
+          <a href="https://www.ubereats.com" target="_blank" rel="noopener">
+            <i class="fas fa-motorcycle"></i> Uber Eats
+          </a>
+          <a href="https://www.deliveroo.fr" target="_blank" rel="noopener">
+            <i class="fas fa-bicycle"></i> Deliveroo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        &copy; <span class="current-year">2023</span> Street Burger - Tous
+        droits réservés
+      </p>
+      <p>
+        Design et développement avec
+        <i class="fas fa-heart text-secondary"></i> et beaucoup de
+        <i class="fas fa-burger text-primary"></i>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top Button -->
+<a href="#" class="back-to-top">
+  <i class="fas fa-chevron-up"></i>
+</a>
+
+<script>
+  // Date actuelle pour l'année du copyright
+  document.addEventListener("DOMContentLoaded", function () {
+    const yearElements = document.querySelectorAll(".current-year");
+    const currentYear = new Date().getFullYear();
+
+    yearElements.forEach((el) => {
+      el.textContent = currentYear;
+    });
+
+    // Back to Top Button
+    const backToTop = document.querySelector(".back-to-top");
+
+    if (backToTop) {
+      // Afficher/masquer le bouton selon la position de défilement
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 500) {
+          backToTop.classList.add("visible");
+        } else {
+          backToTop.classList.remove("visible");
+        }
+      });
+
+      // Défilement doux vers le haut lorsque cliqué
+      backToTop.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    }
+  });
+</script>
+
+<style>
+  .back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary);
+    color: var(--dark-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .back-to-top:hover {
+    background-color: var(--secondary);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .delivery-badges a {
+    display: inline-block;
+    margin-right: 10px;
+    color: var(--text-secondary);
+  }
+
+  .delivery-badges a:hover {
+    color: var(--primary);
+  }
+</style>
