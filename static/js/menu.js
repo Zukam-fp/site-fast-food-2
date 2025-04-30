@@ -5,7 +5,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   // Sélection des éléments du DOM
-  const filterBtns = document.querySelectorAll(".filter-btn");
+  const filterBtns = document.querySelectorAll(".custom-filter-btn");
   const menuItems = document.querySelectorAll(".menu-item");
   const searchInput = document.getElementById("menu-search");
 
@@ -17,12 +17,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const filterMenuItems = () => {
     menuItems.forEach((item) => {
       const category = item.dataset.category;
-      const itemName = item
-        .querySelector(".menu-item-title")
-        .textContent.toLowerCase();
-      const itemDesc = item
-        .querySelector(".menu-item-desc")
-        .textContent.toLowerCase();
+      const itemTitle = item.querySelector(".menu-item-title");
+      const itemDesc = item.querySelector(".menu-item-desc");
+
+      if (!itemTitle || !itemDesc) return; // Éviter les erreurs si l'élément n'existe pas
+
+      const itemName = itemTitle.textContent.toLowerCase();
+      const itemDescription = itemDesc.textContent.toLowerCase();
 
       // Vérifier si l'élément correspond à la catégorie et à la recherche
       const matchesCategory =
@@ -30,34 +31,31 @@ document.addEventListener("DOMContentLoaded", function () {
       const matchesSearch =
         searchQuery === "" ||
         itemName.includes(searchQuery) ||
-        itemDesc.includes(searchQuery);
+        itemDescription.includes(searchQuery);
 
       // Afficher ou masquer l'élément en fonction des critères
       if (matchesCategory && matchesSearch) {
         item.classList.remove("hidden");
-        // Animation de l'élément qui apparaît
-        setTimeout(() => {
-          item.style.opacity = "1";
-          item.style.transform = "translateY(0)";
-        }, 50);
+        // Reset styles
+        item.style.opacity = "1";
+        item.style.transform = "translateY(0)";
       } else {
         item.classList.add("hidden");
-        item.style.opacity = "0";
-        item.style.transform = "translateY(20px)";
       }
     });
 
     // Vérifier s'il y a des résultats à afficher
     const visibleItems = document.querySelectorAll(".menu-item:not(.hidden)");
     const noResultsEl = document.querySelector(".no-results");
+    const menuContainer = document.querySelector(".menu-grid");
+
+    if (!menuContainer) return; // Éviter les erreurs si la grille n'existe pas
 
     if (visibleItems.length === 0) {
       if (!noResultsEl) {
         const noResults = document.createElement("div");
         noResults.className = "no-results text-center py-4";
         noResults.innerHTML = `<p>Aucun résultat ne correspond à votre recherche "${searchQuery}"</p>`;
-
-        const menuContainer = document.querySelector(".menu-grid");
         menuContainer.appendChild(noResults);
       }
     } else if (noResultsEl) {
@@ -70,10 +68,12 @@ document.addEventListener("DOMContentLoaded", function () {
     filterBtns.forEach((btn) => {
       btn.addEventListener("click", function () {
         // Retirer la classe active de tous les boutons
-        filterBtns.forEach((el) => el.classList.remove("active"));
+        filterBtns.forEach((el) => {
+          el.classList.remove("custom-active");
+        });
 
         // Ajouter la classe active au bouton cliqué
-        this.classList.add("active");
+        this.classList.add("custom-active");
 
         // Mettre à jour la catégorie actuelle
         currentCategory = this.dataset.filter;
@@ -231,5 +231,21 @@ document.addEventListener("DOMContentLoaded", function () {
   if (menuItems.length > 0) {
     applyMenuEffects();
     // setupMenuDetails(); // Commenté car non implémenté dans le HTML actuel
+
+    // Initialiser correctement la catégorie actuelle au chargement
+    const activeButton = document.querySelector(
+      ".custom-filter-btn.custom-active"
+    );
+    if (activeButton) {
+      // Initialiser la catégorie actuelle
+      currentCategory = activeButton.dataset.filter;
+    } else if (filterBtns.length > 0) {
+      // Si aucun bouton n'est actif, activer le premier par défaut
+      filterBtns[0].classList.add("custom-active");
+      currentCategory = filterBtns[0].dataset.filter;
+    }
+
+    // Exécuter un filtrage initial pour s'assurer que tout est correctement affiché
+    filterMenuItems();
   }
 });
